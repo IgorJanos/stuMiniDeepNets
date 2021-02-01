@@ -171,18 +171,21 @@ def PlotModel(model, data, X, Y):
     Z = Z.reshape(xx.shape)
 
     # nakreslime kontury a training examples
+    plt.figure(figsize=(20,9))
     plt.subplot(121)
-    plt.contourf(xx, yy, Z, cmap=plt.cm.Spectral)
+    plt.contourf(xx, yy, Z, cmap=plt.cm.RdYlBu)
     plt.xlabel('x1')
     plt.ylabel('x2')
     plt.yscale('linear')
-    plt.scatter(X[0,:], X[1,:], c=Y, cmap=plt.cm.Spectral)
+    plt.scatter(X[0,:], X[1,:], c=Y, cmap=plt.cm.RdBu)
 
     plt.subplot(122)
     plt.xlabel('epoch')
     plt.ylabel('loss')
     plt.yscale('log')
-    plt.plot(data["epochs"], data["loss"], 'b')
-    plt.plot(data["epochs"], data["val_loss"], 'r')
+    plt.plot(data["epochs"], data["loss"], 'b', label='train')
+    plt.plot(data["epochs"], data["val_loss"], 'r', label='val')
+    plt.legend()
 
     plt.show()
+    plt.close()
